@@ -2,10 +2,9 @@ import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import React from 'react'
 import Image from 'next/image'
-import { dummyInterviews } from '@/constants'
 import InterviewCard from '@/components/InterviewCard'
-import { getCurrentUser, getInterviewsByUSerId, getLatestInterviews } from '@/lib/actions/auth.action'
-
+import { getCurrentUser} from '@/lib/actions/auth.action'
+import { getInterviewsByUSerId, getLatestInterviews } from '@/lib/actions/general.action'
 
 const Page = async () => {
 
@@ -18,8 +17,8 @@ const Page = async () => {
     ]
   )
 
-  const hasPastInterviews = userInterviews?.length > 0;
-  const hasUpcomingInterviews = latestInterviews?.length > 0;
+  const hasPastInterviews = userInterviews?.length && userInterviews.length > 0;
+  const hasUpcomingInterviews = latestInterviews?.length && latestInterviews.length > 0;
 
   return (
     <div>

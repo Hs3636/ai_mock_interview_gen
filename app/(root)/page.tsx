@@ -12,8 +12,8 @@ const Page = async () => {
 
   const [userInterviews, latestInterviews] = await Promise.all(
     [
-      getInterviewsByUSerId(user?.id!),
-      getLatestInterviews({userId: user?.id!})
+      user?.id ? getInterviewsByUSerId(user.id) : Promise.resolve([]),
+      user?.id ? getLatestInterviews({userId: user.id}) : Promise.resolve([])
     ]
   )
 
@@ -40,7 +40,15 @@ const Page = async () => {
           <div className="interviews-section">
             {hasPastInterviews ? (
               userInterviews?.map((interview) => (
-                <InterviewCard key={interview.id} {...interview} />
+                <InterviewCard 
+                  key={interview.id}
+                  id={interview.id}
+                  userId={user?.id}
+                  role={interview.role}
+                  type={interview.type}
+                  techstack={interview.techstack}
+                  createdAt={interview.createdAt}
+                />
               ))
             ) : (
               <p>There are no interviews available.</p>
@@ -52,7 +60,15 @@ const Page = async () => {
           <div className="interviews-section">
           {hasUpcomingInterviews ? (
               latestInterviews?.map((interview) => (
-                <InterviewCard key={interview.id} {...interview} />
+                <InterviewCard 
+                  key={interview.id}
+                  id={interview.id}
+                  userId={user?.id}
+                  role={interview.role}
+                  type={interview.type}
+                  techstack={interview.techstack}
+                  createdAt={interview.createdAt}
+                />
               ))
             ) : (
               <p>There are no new interviews available</p>

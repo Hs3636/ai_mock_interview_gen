@@ -1,5 +1,7 @@
+"use server"
+
 import { feedbackSchema } from '@/constants';
-import { db, auth } from '@/firebase/admin';
+import { db } from '@/firebase/admin';
 import { google } from '@ai-sdk/google';
 import { generateObject } from 'ai';
 
@@ -60,26 +62,43 @@ export async function createFeedback(params: CreateFeedbackParams) {
     const feedback = await db.collection('feedback').add({
       interviewId,
       userId,
-      transcript,
-      feedbackId,
       totalScore,
       categoryScores,
       strengths,
       areasForImprovement,
       finalAssessment,
-      createdAt: new Date().toISOString(),
+      createdAt: new Date().toISOString()
     })
 
     return {
       success: true,
       feedbackId: feedback.id
     }
-    
-  } catch(e) {
-    console.error('Error saving feedback', e);
-    return {
-      success: false,
-    }
+
+  } 
+
+  catch (error) {
+    console.error("Error saving feedback:", error);
+    return { success: false };
   }
 
 }
+
+export async function getFeedbackByInterviewId(params: GetFeedbackByInterviewIdParams): Promise<Feedback | null> {
+ 
+  const { interviewId, userId } = params;
+  const feedback =  await db.collection('feedback').where('interviewId', '==', interviewId).where('userId', '==', userId).limit(1).get();
+
+  if(feedback.empty) return null;
+
+  const feedbackDoc = feedback.docs[0];
+
+  return {
+    id: feedbackDoc.id,
+    ...feedbackDoc.data()
+  } as Feedback;
+  
+}
+
+
+

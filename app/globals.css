@@ -292,6 +292,18 @@
       @apply text-sm font-semibold capitalize;
     }
   }
+
+  .form-group {
+    @apply flex flex-col gap-2;
+  }
+  
+  .input {
+    @apply w-full px-4 py-2 bg-dark-200 border border-light-600 rounded-lg text-light-100 focus:outline-none focus:border-primary-200;
+  }
+  
+  .label {
+    @apply text-light-100 font-medium;
+  }
 }
 
 @utility dark-gradient {

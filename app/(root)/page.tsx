@@ -30,10 +30,10 @@ const Page = async () => {
               Practice with realistic mock interviews and get instant feedback to improve your skills.
             </p>
             <Button asChild className="btn-primary max-sm:w-full">
-              <Link href="/interview">Start an Interview</Link>
+              <Link href="/interview">Generate an Interview</Link>
             </Button>
           </div>
-          <Image src="/robot.png" alt="robo-dude" width={400} height={400} className="max-sm:hidden" />
+          <Image src="/robot.png" alt="robo-dude" width={300} height={300} className="max-sm:hidden" />
         </section>
         <section className="flex flex-col gap-6 mt-8">
           <h2>Your Interviews</h2>
@@ -75,7 +75,7 @@ const Page = async () => {
             )}
           </div>
         </section>
-      </>
+        </>
     </div>
   )
 }

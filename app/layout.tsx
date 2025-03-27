@@ -9,7 +9,7 @@ const monoSans = Mona_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "PrepWise",
+  title: "HireGenie",
   description: "AI-powered platform for preparing mock interviews",
 };
 

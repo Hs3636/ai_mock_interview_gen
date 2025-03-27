@@ -4,6 +4,7 @@ import { feedbackSchema } from '@/constants';
 import { db } from '@/firebase/admin';
 import { google } from '@ai-sdk/google';
 import { generateObject } from 'ai';
+import { NextResponse } from 'next/server';
 
 export async function getInterviewsByUSerId(userId: string): Promise<Interview[] | null> {
     const interviews =  await db.collection('interviews').where('userId', '==', userId).orderBy('createdAt', 'desc').get();
@@ -99,6 +100,3 @@ export async function getFeedbackByInterviewId(params: GetFeedbackByInterviewIdP
   } as Feedback;
   
 }
-
-
-

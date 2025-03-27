@@ -96,18 +96,27 @@ const Agent = ({ userName, userId, type, interviewId, questions }: AgentProps) =
     const handleCall = async () => {
         setCallStatus(CallStatus.CONNECTING);
 
-        let formattedQuestions = '';
-        if(questions) {
-            formattedQuestions = questions.map((question) => `- ${question}`).join('\n');
-        }
+        if(type === 'generate') {
+            await vapi.start(process.env.NEXT_PUBLIC_VAPI_WORKFLOW_ID!, {
+                variableValues: {
+                    username: userName,
+                    userid: userId
+                }
+            })
+        } else {
+            let formattedQuestions = '';
 
-        await vapi.start(process.env.NEXT_PUBLIC_VAPI_WORKFLOW_ID!, {
-            variableValues: {
-                username: userName,
-                userid: userId,
-                questions: formattedQuestions
+            if(questions) {
+                formattedQuestions = questions.map((question) => `- ${question}`).join('\n');
             }
-        });
+
+            await vapi.start(interviewer, {
+                variableValues: {
+                    questions: formattedQuestions
+                }
+            });
+            
+        }
     }
 
     const handleDisconnect = async () => {

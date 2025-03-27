@@ -39,13 +39,13 @@ Ensure you have the following installed:
    Create a `.env.local` file in the root directory with the following variables:
 
    ```env
-   NEXT_PUBLIC_FIREBASE_API_KEY=your_firebase_api_key
-   NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_firebase_auth_domain
-   NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_firebase_project_id
-   NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your_firebase_storage_bucket
-   NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_firebase_messaging_sender_id
-   NEXT_PUBLIC_FIREBASE_APP_ID=your_firebase_app_id
-   GOOGLE_AI_API_KEY=your_google_ai_api_key
+   FIREBASE_PRIVATE_KEY=firebase_api_key
+   FIREBASE_CLIENT_EMAIL=firebase_client_email
+   GOOGLE_GENERATIVE_AI_API_KEY=genimi_api_key
+   NEXT_PUBLIC_VAPI_API_KEY=vapi_application_id
+   NEXT_PUBLIC_VAPI_WORKFLOW_ID=vapi_workflow_id
+   MY_EMAIL=your_email_address
+   MY_PASSWORD=your_email_application_password
    ```
 
 4. **Run the development server:**
